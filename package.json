@@ -1,0 +1,48 @@
+{
+  "name": "integrations-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reliable webhook ingestion and delivery: Stripe and HMAC webhooks into Postgres, then out to Google Sheets and CRM webhooks with retries, idempotency and a dead-letter queue.",
+  "license": "MIT",
+  "author": "Noam Tzuberi",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "tsx watch --env-file-if-exists=.env src/main.ts",
+    "start": "node dist/main.js",
+    "build": "tsc -p tsconfig.build.json && cp -r src/db/migrations dist/db/",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:unit": "vitest run --project unit",
+    "test:int": "vitest run --project integration",
+    "test:coverage": "vitest run --coverage",
+    "send:stripe": "tsx --env-file-if-exists=.env scripts/send-webhook.ts stripe",
+    "send:generic": "tsx --env-file-if-exists=.env scripts/send-webhook.ts generic",
+    "mock:destination": "tsx scripts/mock-destination.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.6",
+    "hono": "^4.13.17",
+    "pg": "^8.23.1",
+    "pino": "^10.4.0",
+    "prom-client": "^15.1.3",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@testcontainers/postgresql": "^12.2.1",
+    "@types/node": "^22.20.5",
+    "@types/pg": "^8.23.1",
+    "@vitest/coverage-v8": "^5.1.0",
+    "eslint": "^10.14.0",
+    "globals": "^17.14.0",
+    "pino-pretty": "^13.2.0",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^5.1.0"
+  }
+}
