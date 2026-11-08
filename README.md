@@ -229,7 +229,7 @@ CI runs lint, typecheck, build and the full suite against a Postgres service con
 
 ## How I deliver this kind of work for clients
 
-I'm Samuel, a senior engineer with 17+ years of building backend systems. Integration work is most of what
+I'm Noam, a senior engineer with 17+ years of building backend systems. Integration work is most of what
 I do, and it goes the same way each time.
 
 1. **Scoped milestones.** We start with a short written scope: which events, which destinations, which
