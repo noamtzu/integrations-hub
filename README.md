@@ -11,6 +11,17 @@ anything when those systems are slow, rate limited or down.
 It is a reference implementation of the parts that make an integration dependable. The connectors are
 deliberately simple; the plumbing around them is the point.
 
+## Screenshots
+
+From a local run: `FAIL_RATE=0.4 npm run mock:destination` plus a batch of `npm run send:stripe` and
+`npm run send:generic`, with `MAX_ATTEMPTS=3` so some deliveries give up quickly.
+
+![Dashboard with status counts, dead-letter list and recent events](docs/screenshots/dashboard.png)
+*The dashboard: delivery counts by status, the dead-letter list with per-delivery and bulk **Replay**, and recent events.*
+
+![Event detail with attempt history](docs/screenshots/event.png)
+*One event's detail page: the stored payload and every delivery attempt, here a 503 and a 429 before the third attempt succeeded.*
+
 ## The problem
 
 "Connect Stripe to our CRM and a spreadsheet" sounds like an afternoon: take the webhook, call two APIs.
